@@ -185,7 +185,7 @@ void CWindowApp::updateScene(float dt)
 	static float t_base = 0.0f;
 
 	std::time_t timeDate;
-	timeDate = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+	//timeDate = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
 
 	frameCnt++;
@@ -277,14 +277,7 @@ LRESULT CWindowApp::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 				}
 				else if (mResizing)
 				{
-					// If user is dragging the resize bars, we do not resize 
-					// the buffers here because as the user continuously 
-					// drags the resize bars, a stream of WM_SIZE messages are
-					// sent to the window, and it would be pointless (and slow)
-					// to resize for each WM_SIZE message received from dragging
-					// the resize bars.  So instead, we reset after the user is 
-					// done resizing the window and releases the resize bars, which 
-					// sends a WM_EXITSIZEMOVE message.
+					
 				}
 				else // API call such as SetWindowPos or mSwapChain->SetFullscreenState.
 				{
@@ -421,12 +414,6 @@ void CWindowApp::initDirect3D()
 		&sd,
 		&mSwapChain,
 		&md3dDevice));
-
-
-	// The remaining steps that need to be carried out for d3d creation
-	// also need to be executed every time the window is resized.  So
-	// just call the onResize method here to avoid code duplication.
-
 	onResize();
 }
 
